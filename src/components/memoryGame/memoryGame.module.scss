@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 3rem;
+
+    .commonButton {
+        height: 3.2rem;
+        width: 10rem;
+        border-radius: 25px;
+        background-color: #BCCED9;
+        color: rgb(53, 53, 53);
+    }
+
+    .commonButton:hover {
+        background-color: #FDA214;
+        color: white;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.grid {
+    display: flex;
+    gap: 1rem;
+
+    .numIcons {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 100%;
+        background-color: #152938;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .numIcons:hover {
+        background-color: #315f83;
+    }
+
+    .numIcons:active {
+        background-color: #FDA214;
+    }
+
+    .numIcons::after {
+        background-color: #BCCED9;
+    }
+}
+
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    gap: 20rem
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 12rem;
+    border-radius: 10px;
+    background-color: #BCCED9;
+    color: rgb(53, 53, 53);
+}

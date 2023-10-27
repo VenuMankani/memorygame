@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #152938;
+}
+
+.settings {
+    height: 34rem;
+    width: 42rem;
+    background-color: white;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.selectTheme {
+    display: flex;
+    justify-content: flex-start;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.selections {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+
+    .commonButton {
+        height: 3.2rem;
+        width: 15rem;
+        border-radius: 25px;
+        background-color: #BCCED9;
+    }
+
+    .commonButton:hover {
+        background-color: #8c99a1;
+    }
+
+    .commonButton:active {
+        background-color: #152938;
+    }
+}
+
+.startGameBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
