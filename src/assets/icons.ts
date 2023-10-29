@@ -18,6 +18,21 @@ import {
     faSkull,
     faSkullCrossbones,
     faSun,
+    faMagnifyingGlass,
+    faBomb,
+    faHeadphones,
+    faHeart,
+    faCamera,
+    faDroplet,
+    faMagnet,
+    faCrow,
+    faCrown,
+    faPuzzlePiece,
+    faPlane,
+    faToilet,
+    faOm,
+    faStarAndCrescent,
+    faCross
 } from "@fortawesome/free-solid-svg-icons";
 
 const icons: any = {
@@ -39,6 +54,21 @@ const icons: any = {
     15: faQuidditch,
     16: faSkull,
     17: faRocket,
+    18: faBomb,
+    19: faMagnifyingGlass,
+    20: faHeadphones,
+    21: faHeart,
+    22: faCamera,
+    23: faDroplet,
+    24: faCrow,
+    25: faCrown,
+    26: faOm,
+    27: faCross,
+    28: faStarAndCrescent,
+    29: faMagnet,
+    30: faPuzzlePiece,
+    31: faToilet,
+    32: faPlane
 };
 
 export default icons;

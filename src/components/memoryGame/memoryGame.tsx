@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import styles from './memoryGame.module.scss'
 import { GameContext } from '../../context/GameProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import icons from '../icons';
-
+import icons from '../../assets/icons';
+import winningGif from '../../assets/6mb.gif'
 
 const MemoryGame = () => {
 
@@ -18,6 +18,20 @@ const MemoryGame = () => {
     const [matchedPairs, setMatchedPairs] = useState<any>([]);
     const [showDialog, setShowDialog] = useState<boolean>(false);
     const [showResults, setShowResults] = useState<boolean>(false);
+    const [timer, setTimer] = useState(0); // Timer state
+    let timerInterval: any; // Variable to store the timer interval ID
+
+    // Function to start the timer
+    const startTimer = () => {
+        timerInterval = setInterval(() => {
+            setTimer((prevTimer) => prevTimer + 1);
+        }, 1000);
+    };
+
+    // Function to stop the timer
+    const stopTimer = () => {
+        clearInterval(timerInterval);
+    };
 
     // Function to shuffle an array randomly
     const shuffleArray = (array: any) => {
@@ -29,7 +43,7 @@ const MemoryGame = () => {
         return shuffledArray;
     };
 
-    useEffect(() => {
+    const initializeGrid = (gridSize: number) => {
         const totalPairs = gridSize * gridSize / 2;
         const pairs = Array.from({ length: totalPairs }, (_, index) => index);
         const shuffledPairs = shuffleArray([...pairs, ...pairs]);
@@ -43,9 +57,36 @@ const MemoryGame = () => {
             }
             newGrid.push(row);
         }
+        return newGrid;
+    };
 
+    const handleReset = () => {
+        const newGrid = initializeGrid(gridSize);
+        setGrid(newGrid);
+        setGridSize(initialGridSize);
+        setSelectedPairs([]);
+        setMatchedPairs([]);
+        stopTimer();
+        setTimer(0);
+
+    }
+
+    const handleNewGame = () => {
+        setShowDialog(true);
+    }
+
+    useEffect(() => {
+        const newGrid = initializeGrid(gridSize);
         setGrid(newGrid);
     }, [gridSize]);
+
+    const formatTime = (timeInSeconds: any) => {
+        const hours = Math.floor(timeInSeconds / 3600);
+        const minutes = Math.floor((timeInSeconds % 3600) / 60);
+        const seconds = timeInSeconds % 60;
+
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;;
+    };
 
     const handleIconClick = (rowIndex: any, colIndex: any) => {
 
@@ -62,11 +103,17 @@ const MemoryGame = () => {
                     setMatchedPairs([...matchedPairs, grid[row1][col1]]);
                 }
 
+                // Start the timer when the user makes the first move
+                if (timer === 0) {
+                    startTimer();
+                }
+
                 // Reset selection after a short delay
                 setTimeout(() => {
                     setSelectedPairs([]);
-                }, 1000);
+                }, 500);
             }
+
         }
     };
 
@@ -74,19 +121,12 @@ const MemoryGame = () => {
         // Check if all pairs are matched
         if (matchedPairs.length === gridSize * gridSize / 2) {
             setShowResults(true);
+            stopTimer();
+            console.log("Timer stopped");
         }
-    }, [matchedPairs.length === gridSize * gridSize / 2])
+        // console.log("useEffect executed with matchedPairs:", matchedPairs, "gridSize:", gridSize, "Condition met:", matchedPairs.length === gridSize * gridSize / 2);
+    }, [matchedPairs, gridSize]);
 
-
-    const handleReset = () => {
-        setGridSize(initialGridSize);
-        setSelectedPairs([]);
-        setMatchedPairs([]);
-    }
-
-    const handleNewGame = () => {
-        setShowDialog(true);
-    }
 
     return (
         <>
@@ -129,7 +169,7 @@ const MemoryGame = () => {
                 <div className={styles.footer}>
                     {/* <div className={styles.footerContainer}>
                         <Typography variant='h6' fontWeight={'bold'}>
-                            Time: 00:00
+                            Time: {formatTime(timer)}
                         </Typography>
                     </div> */}
                 </div>
@@ -144,9 +184,9 @@ const MemoryGame = () => {
                         {"You are about to lost all your progress!"}
                     </DialogTitle>
                     <DialogActions>
-                        <Button onClick={() => setShowDialog(false)}>Disagree</Button>
+                        <Button onClick={() => setShowDialog(false)}>Cancel</Button>
                         <Button onClick={() => navigate('/')} autoFocus>
-                            Agree
+                            OK
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -154,14 +194,22 @@ const MemoryGame = () => {
                 <Dialog
                     open={showResults}
                     onClose={() => setShowResults(false)}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
+                    PaperProps={{
+                        style: {
+                            borderRadius: '20px',
+                            width: '30rem'
+                        },
+                    }}
                 >
-                    <DialogTitle id="alert-dialog-title" color={'green'}>
-                        🎉You Win🎉
+                    <DialogTitle style={{ display: 'flex', justifyContent: 'center' }}>
+                        <img src={winningGif} height={200} width={250} />
                     </DialogTitle>
-                    <DialogContent>
-                        <Typography variant='h4'>All the pairs match!</Typography>
+                    <DialogContent style={{
+                        display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', gap: '1rem'
+                    }}>
+                        <Typography variant='h4' color={'green'} fontWeight={700}>🎉You Win🎉</Typography>
+                        <Typography variant='h5' fontWeight={700}>All the pairs match!</Typography>
+                        {/* <Typography variant='h6'>{`Time: ${formatTime(timer)}`}</Typography> */}
                     </DialogContent>
                     <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button variant="contained"
