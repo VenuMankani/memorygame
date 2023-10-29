@@ -19,10 +19,10 @@ const GameSettings = () => {
     const validateSelections = () => {
         if (!gameContext.theme) {
             setShowSnackbar(true);
-            setSnackbarMessage("Please Select The Theme");
+            setSnackbarMessage("Please Select The Theme.");
         } else if (!gameContext.gridSize) {
             setShowSnackbar(true);
-            setSnackbarMessage("Please Select The Grid Size");
+            setSnackbarMessage("Please Select The Grid Size.");
         } else {
             navigate('/memory');
         }
