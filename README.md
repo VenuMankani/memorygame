@@ -10,6 +10,6 @@ A memory game to where icons has to match the pairs in a 4x4, 6x6, 8x8 grid Play
 3. Game - </br>
 <img src="https://github.com/VenuMankani/memorygame/assets/109686769/e6131d83-37d0-4b30-a382-030f01fb9c1e.jpg" width=30% height=40%>
 
-4. Winning Screen -
+4. Winning Screen - <br/>
    <img src="https://github.com/VenuMankani/memorygame/assets/109686769/d6fb14c9-ffe8-4814-ad6f-f57101aa88d9.jpg" width=30% height=40%>
 
