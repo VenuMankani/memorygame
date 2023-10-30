@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import './App.scss';
 import GameSettings from './components/gameSettings/gameSettings';
 import MemoryGame from './components/memoryGame/memoryGame';
