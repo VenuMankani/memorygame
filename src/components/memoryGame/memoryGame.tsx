@@ -167,11 +167,11 @@ const MemoryGame = () => {
                 </div>
 
                 <div className={styles.footer}>
-                    {/* <div className={styles.footerContainer}>
+                    <div className={styles.footerContainer}>
                         <Typography variant='h6' fontWeight={'bold'}>
                             Time: {formatTime(timer)}
                         </Typography>
-                    </div> */}
+                    </div>
                 </div>
 
                 <Dialog
@@ -209,7 +209,7 @@ const MemoryGame = () => {
                     }}>
                         <Typography variant='h4' color={'green'} fontWeight={700}>🎉You Win🎉</Typography>
                         <Typography variant='h5' fontWeight={700}>All the pairs match!</Typography>
-                        {/* <Typography variant='h6'>{`Time: ${formatTime(timer)}`}</Typography> */}
+                        <Typography variant='h6'>{`Time: ${formatTime(timer)}`}</Typography>
                     </DialogContent>
                     <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button variant="contained"
